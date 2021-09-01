@@ -15,11 +15,12 @@ renderizarMenu :: Game -> Picture
 renderizarMenu jogo = pictures [translate (150) (200) $ scale 0.5 0.5 $ text "Connect4",
                           translate (140) (150) $ scale 0.2 0.2 $ text "Pressione 'R' para reiniciar",
                           translate (140) (110) $ scale 0.2 0.2 $ text "Pressione 'ESC' para fechar",
-                          translate (160) (-10) $ color (corDosJogadores (getJogadorVez jogo)) $ scale 0.3 0.3 $ text (getTextoRodada jogo),
+                          translate (150) (-10) $ color (corDosJogadores (getJogadorVez jogo)) $ scale 0.3 0.3 $ text (getTextoRodada jogo),
                           translate (380) (0) $ color (corDosJogadores (getJogadorVez jogo)) $ circleSolid 40]
                           
 getTextoRodada :: Game -> String 
 getTextoRodada jogo 
+  | checaEmpate (vetorizaTabuleiro(jogoTabuleiro jogo) 6 []) 41 = "EMPATOU!"
   | isNothing(getVencedor jogo) = "Vez do"
   | otherwise = "VENCEU! "
 

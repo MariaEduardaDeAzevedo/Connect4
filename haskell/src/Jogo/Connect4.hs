@@ -47,6 +47,14 @@ checaVencedor tabuleiro = primeiroJusts $ map checaLinhas todasAsLinhas
   where
     todasAsLinhas = tabuleiro ++ transpose tabuleiro ++ diagonais tabuleiro
 
+checaEmpate :: [Maybe Player] -> Int -> Bool 
+checaEmpate lista 0 = if isNothing (lista!!0) then False else True
+checaEmpate lista i = if isNothing (lista!!i) then False else checaEmpate lista (i-1)
+
+vetorizaTabuleiro :: Tabuleiro -> Int -> [Maybe Player] -> [Maybe Player]
+vetorizaTabuleiro tabuleiro 0 lista = lista ++ (tabuleiro!!0)
+vetorizaTabuleiro tabuleiro i lista = vetorizaTabuleiro tabuleiro (i-1) (lista ++ (tabuleiro!!i))
+
 checaLinhas :: [Maybe Player] -> Maybe Player
 checaLinhas linha
     | null vencedores = Nothing
