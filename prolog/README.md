@@ -15,7 +15,7 @@ cd Connect4/prolog
 ```
 3.  Rode o arquivo main.pl 
 ```bash
-swiĺ main.pl
+swipl main.pl
 ```
 1.  Execute a função connect4()
 ```bash
